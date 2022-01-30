@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Form() {
+const Form = () => {
      return (
           <div>
                <h1>Form Page</h1>

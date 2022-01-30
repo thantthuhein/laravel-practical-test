@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function FieldsToRender() {
+const FieldsToRender = () => {
      return (
           <div>
                <h1>Fields To Render Page</h1>
