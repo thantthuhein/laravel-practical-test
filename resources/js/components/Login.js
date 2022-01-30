@@ -35,7 +35,11 @@ const Login = () => {
           <div>
                {
                     isLoggedIn ?
-                    <h1>Already Logged In</h1>
+                    <div className="flex items-center justify-center h-screen">
+                         <div className="bg-red-400 rounded-lg border shadow-lg px-16 py-10">
+                              <h1>Already Logged In</h1>
+                         </div>
+                    </div>
                     :
                     <div className="flex items-center justify-center h-screen">
                          <div className="bg-red-400 rounded-lg border shadow-lg px-16 py-10">

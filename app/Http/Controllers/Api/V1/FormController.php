@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Models\User;
 use App\Models\Form;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Services\FormService;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveFormRequest;
 
 class FormController extends Controller
 {
@@ -14,11 +16,16 @@ class FormController extends Controller
           $this->formService = $formService;
      }
 
-     public function save(Request $request)
+     public function save(SaveFormRequest $request)
      {
-          // TODO: Validation
-          // $this->formService->save($request->validated());
-          $formData = $this->formService->save($request->all());
+          $formData = $this->formService->save($request->validated());
+
+          return response()->json($formData);
+     }
+
+     public function latestForm(User $user)
+     {
+          $formData = $this->formService->getUserLatestForm($user);
 
           return response()->json($formData);
      }

@@ -14,4 +14,9 @@ class FormRepository implements Repository {
      {
           return $this->form->create($data);
      }
+
+     public function getUserLatestForm($user)
+     {
+          return $this->form->where('user_id', $user->id)->latest()->first();
+     }
 }

@@ -5378,6 +5378,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var FieldsToRender = function FieldsToRender() {
   var _jsx2;
 
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    var token = window.localStorage.getItem('token');
+
+    if (!token) {
+      window.location = '/login';
+    }
+  });
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       name = _useState2[0],
@@ -5422,8 +5430,7 @@ var FieldsToRender = function FieldsToRender() {
       headers: {
         Authorization: "Bearer ".concat(token)
       }
-    }; // console.log(user.id)
-
+    };
     axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/V1/save-form', {
       'user_id': user.id,
       'name': name,
@@ -5532,14 +5539,237 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 
 var Form = function Form() {
+  var _jsx2;
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var token = window.localStorage.getItem('token');
+
+    if (!token) {
+      window.location = '/login';
+    }
+
+    var user = JSON.parse(window.localStorage.getItem('user'));
+    axios.get("api/V1/users/".concat(user.id, "/latest-form")).then(function (response) {
+      console.log(response.data);
+      setShowName(!!response.data.name);
+      setShowPhone(!!response.data.phone);
+      setShowDateOfBirth(!!response.data.date_of_birth);
+      setShowGender(!!response.data.gender);
+    });
+  });
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      showName = _useState2[0],
+      setShowName = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showPhone = _useState4[0],
+      setShowPhone = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState6 = _slicedToArray(_useState5, 2),
+      showDateOfBirth = _useState6[0],
+      setShowDateOfBirth = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState8 = _slicedToArray(_useState7, 2),
+      showGender = _useState8[0],
+      setShowGender = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      name = _useState10[0],
+      setName = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      phone = _useState12[0],
+      setPhone = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      dateOfBirth = _useState14[0],
+      setDateOfBirth = _useState14[1];
+
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      male = _useState16[0],
+      setMale = _useState16[1];
+
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState18 = _slicedToArray(_useState17, 2),
+      female = _useState18[0],
+      setFemale = _useState18[1];
+
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState20 = _slicedToArray(_useState19, 2),
+      loading = _useState20[0],
+      setLoading = _useState20[1];
+
+  var onNameChange = function onNameChange(event) {
+    setName(event.target.value);
+  };
+
+  var onPhoneChange = function onPhoneChange(event) {
+    setPhone(event.target.value);
+  };
+
+  var onDateOfBirthChange = function onDateOfBirthChange(event) {
+    setDateOfBirth(event.target.value);
+  };
+
+  var onMaleGenderChange = function onMaleGenderChange() {
+    setMale(true);
+    setFemale(false);
+  };
+
+  var onFemaleGenderChange = function onFemaleGenderChange() {
+    setFemale(true);
+    setMale(false);
+  };
+
+  var onSubmitForm = function onSubmitForm(event) {
+    event.preventDefault();
+    setLoading(true);
+    var user = JSON.parse(window.localStorage.getItem('user'));
+    var token = window.localStorage.getItem('token');
+    var config = {
+      headers: {
+        Authorization: "Bearer ".concat(token)
+      }
+    };
+    axios.post('/api/V1/submit-form', {
+      'user_id': user.id,
+      'name': name,
+      'phone': phone,
+      'date_of_birth': dateOfBirth,
+      'gender': male ? 'male' : 'female'
+    }, config).then(function (response) {
+      window.location = '/fields-to-render';
+    })["catch"](function (error) {
+      var _error$response;
+
+      console.log((_error$response = error.response) === null || _error$response === void 0 ? void 0 : _error$response.data);
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "Form Page"
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "bg-red-400 rounded-lg border shadow-lg px-16 py-10 mt-4 mx-10",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "text-xl font-bold mb-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+          className: "text-xl",
+          children: "Form Submission"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+        onSubmit: onSubmitForm,
+        children: [showName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "mb-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "block text-grey-darker text-sm mb-2",
+            htmlFor: "name",
+            children: "Name"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            required: true,
+            value: name,
+            onChange: onNameChange,
+            className: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker",
+            id: "name",
+            type: "text",
+            placeholder: "Name"
+          })]
+        }), showPhone && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "mb-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "block text-grey-darker text-sm mb-2",
+            htmlFor: "phone",
+            children: "Phone"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            required: true,
+            value: phone,
+            onChange: onPhoneChange,
+            className: "shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3",
+            id: "phone",
+            type: "text",
+            placeholder: "09-"
+          })]
+        }), showDateOfBirth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "mb-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "block text-grey-darker text-sm mb-2",
+            htmlFor: "dateOfBirth",
+            children: "Date Of Birth"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            required: true,
+            value: dateOfBirth,
+            onChange: onDateOfBirthChange,
+            className: "shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3",
+            id: "dateOfBirth",
+            type: "date"
+          })]
+        }), showGender && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "mb-6",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "block text-grey-darker text-sm mb-2",
+            htmlFor: "gender",
+            children: "Gender"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            className: "inline-flex items-center",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              value: male,
+              onChange: onMaleGenderChange,
+              checked: male,
+              type: "checkbox",
+              className: "form-checkbox h-5 w-5 text-blue-100"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "ml-2",
+              children: "Male"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            className: "inline-flex items-center ml-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              value: female,
+              onChange: onFemaleGenderChange,
+              checked: female,
+              type: "checkbox",
+              className: "form-checkbox h-5 w-5 text-blue-100"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              className: "ml-2",
+              children: "Female"
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", (_jsx2 = {
+          type: "submit",
+          className: "bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
+        }, _defineProperty(_jsx2, "type", "submit"), _defineProperty(_jsx2, "children", loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Submitting..."
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "Submit"
+        })), _jsx2))]
+      })]
     })
   });
 };
@@ -5627,8 +5857,14 @@ var Login = function Login() {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    children: _Auth__WEBPACK_IMPORTED_MODULE_3__.isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-      children: "Already Logged In"
+    children: _Auth__WEBPACK_IMPORTED_MODULE_3__.isLoggedIn ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "flex items-center justify-center h-screen",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "bg-red-400 rounded-lg border shadow-lg px-16 py-10",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+          children: "Already Logged In"
+        })
+      })
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "flex items-center justify-center h-screen",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {

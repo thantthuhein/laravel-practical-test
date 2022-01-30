@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\FormController;
+use App\Http\Controllers\Api\V1\SubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,10 @@ use App\Http\Controllers\Api\V1\FormController;
 |
 */
 Route::post('V1/login', LoginController::class);
+Route::get('V1/users/{user}/latest-form', [FormController::class, 'latestForm']);
 
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::post('V1/save-form', [FormController::class, 'save']);
+
+    Route::post('V1/submit-form', [SubmissionController::class, 'submit']);
 });

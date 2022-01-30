@@ -1,8 +1,17 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 const FieldsToRender = () => {
+
+     useEffect(() => {
+          let token = window.localStorage.getItem('token')
+
+          if (!token) {
+               window.location = '/login';
+          }
+     })
+
      const [name, setName] = useState(false);
      const [phone, setPhone] = useState(false);
      const [dateOfBirth, setDateOfBirth] = useState(false);
@@ -31,7 +40,7 @@ const FieldsToRender = () => {
           const config = {
               headers: { Authorization: `Bearer ${token}` }
           };
-          // console.log(user.id)
+
           axios.post('/api/V1/save-form', {
                'user_id': user.id,
                'name': name,
@@ -41,6 +50,7 @@ const FieldsToRender = () => {
           }, config)
           .then(response => {
                console.log(response.data)
+
                window.location = '/submit-form';
           })
           .catch((error) => {
