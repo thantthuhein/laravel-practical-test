@@ -17,8 +17,8 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/form', function () {
-    return view('form');
+Route::get('/submit-form', function () {
+    return view('submitForm');
 });
 
 Route::get('/fields-to-render', function () {
